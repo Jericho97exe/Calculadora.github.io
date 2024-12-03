@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        /* Estilo global */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Estilo de la calculadora */
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        /* Pantalla de la calculadora */
+        input#display {
+            width: 100%;
+            padding: 20px;
+            font-size: 32px;
+            text-align: right;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        /* Estilo de los botones */
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        button {
+            padding: 20px;
+            font-size: 18px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        /* Botón de igual */
+        .equal {
+            background-color: #4CAF50;
+            color: white;
+            grid-column: span 4;
+        }
+
+        .equal:hover {
+            background-color: #45a049;
+        }
+
+        /* Botón de borrar */
+        .clear {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .clear:hover {
+            background-color: #d32f2f;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <!-- Pantalla de la calculadora -->
+        <input type="text" id="display" disabled>
+
+        <!-- Botones de la calculadora -->
+        <div class="buttons">
+            <!-- Fila 1 -->
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button class="clear" onclick="clearDisplay()">C</button>
+
+            <!-- Fila 2 -->
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('+')">+</button>
+
+            <!-- Fila 3 -->
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('-')">-</button>
+
+            <!-- Fila 4 -->
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('/')">/</button>
+        </div>
+
+        <!-- Botón de igual -->
+        <button class="equal" onclick="calculate()">=</button>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+
+        // Agregar valor al display
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+
+        // Limpiar el display
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        // Calcular el resultado
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
